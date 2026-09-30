@@ -21,3 +21,10 @@ def test_divide(capsys):
 def test_divide_by_zero_returns_nonzero_exit(capsys):
     assert main(["divide", "1", "0"]) == 1
     assert "error" in capsys.readouterr().err
+
+
+def test_average_after_recording_an_operation(capsys):
+    main(["add", "2", "3"])
+    capsys.readouterr()
+    assert main(["average"]) == 0
+    assert capsys.readouterr().out.strip() != ""

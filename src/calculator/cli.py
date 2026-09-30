@@ -5,8 +5,10 @@ import sys
 
 from calculator.config import Settings
 from calculator.exceptions import CalculatorError
+from calculator.history import HistoryService
 from calculator.logging_config import setup_logging
 from calculator.operations import add, divide, multiply, subtract
+from calculator.stats import average_result
 
 _OPERATIONS = {
     "add": add,
@@ -14,6 +16,8 @@ _OPERATIONS = {
     "multiply": multiply,
     "divide": divide,
 }
+
+_HISTORY = HistoryService()
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -36,6 +40,8 @@ def build_parser() -> argparse.ArgumentParser:
     div_parser.add_argument("a", type=float)
     div_parser.add_argument("b", type=float)
 
+    sub.add_parser("average")
+
     return parser
 
 
@@ -46,6 +52,10 @@ def main(argv=None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
 
+    if args.operation == "average":
+        print(average_result(_HISTORY))
+        return 0
+
     operation = _OPERATIONS[args.operation]
     try:
         result = operation(args.a, args.b)
@@ -53,6 +63,7 @@ def main(argv=None) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 1
 
+    _HISTORY.record(args.operation, (args.a, args.b), result)
     print(result)
     return 0
 
