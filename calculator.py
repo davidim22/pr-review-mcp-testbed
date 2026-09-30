@@ -12,5 +12,8 @@ def subtract(a, b):
 
 
 def divide(a, b):
-    """Return the quotient of a and b."""
-    return a / b
+    """Return the quotient of a and b, or 0 if dividing by zero."""
+    try:
+        return a / b
+    except ZeroDivisionError:
+        return 0
