@@ -1,13 +1,18 @@
 # pr-review-mcp-testbed
 
-A tiny sandbox repo for testing an MCP server that reviews pull requests.
+A sandbox repo for testing an MCP server that reviews pull requests.
 
-## Contents
+## Layout
 
-- `calculator.py` — a minimal calculator module (`add`, `subtract`, `divide`).
+```
+src/calculator/     # package source
+tests/              # test suite (added in a later PR)
+```
 
 ## Purpose
 
-This repo exists to provide small, varied pull requests (clean, buggy, and
-mixed-quality) so PR review tooling can be exercised against realistic
-diffs. It is not meant to be a real calculator library.
+This repo exists to provide realistic, varied pull requests (clean, buggy,
+and mixed-quality) so PR review tooling can be exercised against them. It
+is not meant to be a real calculator library — the "enterprise" structure
+(package layout, tests, CI, config, docs) is intentionally over-built for
+what the code actually does.
