@@ -11,11 +11,11 @@ def add(a: float, b: float) -> float:
     return a + b
 
 
-def subtract(a: float, b: float) -> float:
-    """Return the difference of a and b."""
-    validate_operand(a, name="a")
-    validate_operand(b, name="b")
-    return a - b
+def subtract(x: float, y: float) -> float:
+    """Return the difference of x and y."""
+    validate_operand(x, name="a")
+    validate_operand(y, name="b")
+    return x - y
 
 
 def multiply(a: float, b: float) -> float:
