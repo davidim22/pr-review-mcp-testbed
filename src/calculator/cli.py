@@ -6,13 +6,14 @@ import sys
 from calculator.config import Settings
 from calculator.exceptions import CalculatorError
 from calculator.logging_config import setup_logging
-from calculator.operations import add, divide, multiply, subtract
+from calculator.operations import add, divide, multiply, power, subtract
 
 _OPERATIONS = {
     "add": add,
     "subtract": subtract,
     "multiply": multiply,
     "divide": divide,
+    "power": power,
 }
 
 
@@ -35,6 +36,10 @@ def build_parser() -> argparse.ArgumentParser:
     div_parser = sub.add_parser("divide")
     div_parser.add_argument("a", type=float)
     div_parser.add_argument("b", type=float)
+
+    pow_parser = sub.add_parser("power")
+    pow_parser.add_argument("a", type=float)
+    pow_parser.add_argument("b", type=float)
 
     return parser
 

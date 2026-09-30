@@ -36,3 +36,10 @@ def divide(a: float, b: float) -> float:
     if b == 0:
         raise DivisionByZeroError("cannot divide by zero")
     return a / b
+
+
+def power(base: float, exponent: float) -> float:
+    """Return base raised to exponent."""
+    validate_operand(base, name="base")
+    validate_operand(exponent, name="exponent")
+    return base**exponent
