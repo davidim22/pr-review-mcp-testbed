@@ -3,7 +3,7 @@
 import pytest
 
 from calculator.exceptions import DivisionByZeroError, InvalidOperandError
-from calculator.operations import add, divide, multiply, subtract
+from calculator.operations import add, divide, multiply, power, subtract
 
 
 def test_add():
@@ -25,6 +25,15 @@ def test_divide():
 def test_divide_by_zero_raises():
     with pytest.raises(DivisionByZeroError):
         divide(1, 0)
+
+
+def test_power():
+    assert power(2, 10) == 1024
+
+
+def test_power_rejects_invalid_operands():
+    with pytest.raises(InvalidOperandError):
+        power("2", 3)
 
 
 @pytest.mark.parametrize("bad_value", ["1", None, [1], True])
